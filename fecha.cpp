@@ -3,7 +3,7 @@
 #include "fecha.hpp"
 
 /////////////////// MÉTODOS PRIVADOS ///////////////////
-void Fecha::comprueba()
+void Fecha::comprueba() const
 {
     if(dia_>ultimo_dia() || dia_<1){
         Invalida d_inval{"Dia Incorrecto"};
@@ -34,7 +34,6 @@ int Fecha::ultimo_dia() const {
             }else{
                 Invalida inval{"Mes Incorrecto"};
                 throw inval;
-                return 0;
             }
         } 
     } 
@@ -43,6 +42,8 @@ int Fecha::ultimo_dia() const {
 /////////////////// CONSTRUCTORES ///////////////////
 Fecha::Fecha(int d, int m, int a): dia_{d}, mes_{m}, anno_{a}
 {
+    std::time_t tiempo_calendario=std::time(nullptr);
+    std::tm* tiempo_descompuesto=std::localtime(&tiempo_calendario);
     //Si es 0 lo pone al actual
     if(anno_==0)
         anno_=tiempo_descompuesto->tm_year+1900;
@@ -70,6 +71,9 @@ Fecha::operator const char*() const
 {
     std::locale::global(std::locale("")); //Por defecto ("") pilla la del sistema -> "es_ES.utf8"
     char *buffer=new char[100]; //100 por ejemplo
+
+    std::time_t tiempo_calendario=std::time(nullptr);                  
+    std::tm* tiempo_descompuesto=std::localtime(&tiempo_calendario);    
 
     tiempo_descompuesto->tm_mday=dia_;
     tiempo_descompuesto->tm_mon=mes_-1;

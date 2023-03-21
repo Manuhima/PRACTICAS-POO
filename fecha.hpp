@@ -53,10 +53,8 @@ class Fecha {
 
     private:
         int dia_, mes_, anno_;
-        void comprueba();
+        void comprueba() const;
         int ultimo_dia() const;
-        std::time_t tiempo_calendario=std::time(nullptr);                   //Lo usamos más adelante
-        std::tm* tiempo_descompuesto=std::localtime(&tiempo_calendario);    //en distintas funciones
 };
 
 //Operadores Lógicos
