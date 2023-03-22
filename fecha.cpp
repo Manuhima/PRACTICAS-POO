@@ -70,7 +70,7 @@ Fecha::Fecha (const char* c)
 Fecha::operator const char*() const
 {
     std::locale::global(std::locale("")); //Por defecto ("") pilla la del sistema -> "es_ES.utf8"
-    char *buffer=new char[100]; //100 por ejemplo
+    char *buffer=new char[50]; //50 por ejemplo
 
     std::time_t tiempo_calendario=std::time(nullptr);                  
     std::tm* tiempo_descompuesto=std::localtime(&tiempo_calendario);    
@@ -80,7 +80,7 @@ Fecha::operator const char*() const
     tiempo_descompuesto->tm_year=anno_-1900;
 
     mktime(tiempo_descompuesto); //Rellena el struct tm y normaliza la fecha. Ej: 30 Febrero 2023 -> 2 Marzo 2023
-    strftime(buffer,100,"%A %e de %B de %Y",tiempo_descompuesto); //De struct tm a formato cadena
+    strftime(buffer,50,"%A %e de %B de %Y",tiempo_descompuesto); //De struct tm a formato cadena
 
     return buffer;
 }
