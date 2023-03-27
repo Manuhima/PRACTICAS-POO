@@ -70,7 +70,7 @@ Fecha::Fecha (const char* c)
 Fecha::operator const char*() const
 {
     std::locale::global(std::locale("")); //Por defecto ("") pilla la del sistema -> "es_ES.utf8"
-    char *buffer=new char[50]; //50 por ejemplo
+    static char *buffer{new char[50]}; //50 por ejemplo
 
     std::time_t tiempo_calendario=std::time(nullptr);                  
     std::tm* tiempo_descompuesto=std::localtime(&tiempo_calendario);    
@@ -114,11 +114,11 @@ Fecha& Fecha::operator ++() //++f
     return *this;
 }
 
-Fecha& Fecha::operator ++(int) //f++
+Fecha Fecha::operator ++(int) //f++
 {
-    Fecha *f=new Fecha{*this};
+    Fecha f{*this};
     *this+=1;
-    return *f;
+    return f;
 }
 
 Fecha& Fecha::operator --() //--f
@@ -127,11 +127,11 @@ Fecha& Fecha::operator --() //--f
     return *this;
 }
 
-Fecha& Fecha::operator --(int) //f--
+Fecha Fecha::operator --(int) //f--
 {
-    Fecha *f=new Fecha{*this};
+    Fecha f{*this};
     *this+= -1;
-    return *f;
+    return f;
 }
 
 /////////////////// OPERADORES ARITMÉTICOS ///////////////////

@@ -40,9 +40,9 @@ class Fecha {
         Fecha& operator +=(int n);
         Fecha& operator -=(int n);
         Fecha& operator ++();    //++f
-        Fecha& operator ++(int); //f++
+        Fecha operator ++(int); //f++
         Fecha& operator --();    //--f
-        Fecha& operator --(int); //f--
+        Fecha operator --(int); //f--
 
         //Operadores Aritméticos
         Fecha operator +(int n) const;
