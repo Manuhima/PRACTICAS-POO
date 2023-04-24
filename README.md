@@ -1,2 +1,4 @@
 # PRACTICAS-POO
 P0 - OK
+P1 - OK
+P2 - OK
