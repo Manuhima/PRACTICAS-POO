@@ -1,4 +1,2 @@
 # PRACTICAS-POO
-P0 - OK
-P1 - OK
-P2 - OK
+Todas las prácticas completas hasta el momento
