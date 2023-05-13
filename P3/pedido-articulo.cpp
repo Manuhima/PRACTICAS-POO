@@ -75,15 +75,16 @@ void Pedido_Articulo::mostrarVentasArticulos(ostream& os) const noexcept
 ostream& operator <<(ostream& os, Pedido_Articulo::ItemsPedido ip)
 {
     double total=0;
-    os<<"  PVP\tCantidad \tArtículo"<<std::setfill('=')<<std::setw(70)<<std::endl;
+    os<<"  PVP\tCantidad \tArtículo"<<std::endl
+      <<std::setfill('=')<<std::setw(70)<<" "<<std::endl;
     //Imprimir items
     for(auto item:ip) {
         total+=item.second.precio_venta()+item.second.cantidad();
         os<<item.second<<"\t"
           <<"["<<item.first->referencia()<<"] "<<item.first->titulo()<<std::endl;
     }
-    os<<std::setfill('=')<<std::setw(70)<<std::endl
-      <<"Total   "<<total<<std::endl;
+    os<<std::setfill('=')<<std::setw(70)<<" "<<std::endl
+      <<"Total   "<<total<<std::endl<<std::endl;
 
     return os;
 }
@@ -105,7 +106,7 @@ ostream& operator <<(ostream& os, Pedido_Articulo::Pedidos peds)
     }
 
     os<<std::setfill('=')<<std::setw(70)<<" "<<std::endl
-      <<total<<" €\t\t"<<cantidad<<std::endl;
+      <<total<<" €\t\t"<<cantidad<<std::endl<<std::endl;
 
     return os;
 }
