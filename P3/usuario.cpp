@@ -51,6 +51,19 @@ Usuario::Usuario(const Cadena& id, const Cadena& nom, const Cadena& apell, const
         throw Id_duplicado{id};
 }
 
+void Usuario::es_titular_de(const Tarjeta& tar)
+{
+    if(tar.titular()==this) 
+        tarjetas_[tar.numero()] = const_cast<Tarjeta*>(&tar);
+}
+
+void Usuario::no_es_titular_de(Tarjeta& tar)
+{
+    tarjetas_.erase(tar.numero());
+    tar.anula_titular();
+    tar.activa(true);
+}
+
 
 void Usuario::compra(Articulo& art, unsigned int cant) 
 {

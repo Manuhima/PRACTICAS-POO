@@ -76,7 +76,7 @@ class Usuario{
         unsigned int n_articulos() const noexcept;
 
         void es_titular_de(const Tarjeta& tar);
-        void no_es_titular_de(const Tarjeta& tar);
+        void no_es_titular_de(Tarjeta& tar);
 
         //Flujo de Salida
         friend ostream& operator <<(ostream& os, const Usuario& user);
@@ -108,12 +108,5 @@ inline const Usuario::Articulos& Usuario::compra() const noexcept {return carrit
 
 inline void Usuario::vaciar_carro() {carrito_.clear();}
 inline unsigned int Usuario::n_articulos() const noexcept {return carrito_.size();}
-
-inline void Usuario::es_titular_de(const Tarjeta& tar)
-{
-    if(tar.titular()==this) tarjetas_[tar.numero()] = const_cast<Tarjeta*>(&tar);
-}
-
-inline void Usuario::no_es_titular_de(const Tarjeta& tar){tarjetas_.erase(tar.numero());}
 
 #endif
